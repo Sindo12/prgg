@@ -11,9 +11,9 @@ public class Main {
         JFrame frame = new JFrame();
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setTitle("Game Of Live");
+        frame.setTitle("Juego de las Vidas");
 
-        Game game = new Game(1280, 960,60);
+        Game game = new Game(800, 800,60);
         frame.add(game);
         frame.pack();
         game.start();

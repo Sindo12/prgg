@@ -10,6 +10,7 @@ public class Game extends JPanel implements Runnable{
     private final float fpsLimit;
     private Thread thread;
     private boolean finished;
+    private Ball ball;
 
     public Game(int whidth, int height, float fpsLimit){
         this.whidth = whidth;
@@ -20,6 +21,8 @@ public class Game extends JPanel implements Runnable{
         setPreferredSize(new Dimension(whidth, height));
         setBackground(Color.BLACK);
         setFocusable(true);
+
+        ball = new Ball(10,275,30,10,10, Color.MAGENTA, whidth,height);
     }
 
     public void start(){
@@ -29,7 +32,7 @@ public class Game extends JPanel implements Runnable{
 
     @Override
     public void run() {
-        final double NANO_BETWEEN_UPDATES = 1_000_000 / fpsLimit;
+        final double NANO_BETWEEN_UPDATES = 1_000_000_000 / fpsLimit;
         long currentFrame;
         long lastFrame = currentFrame = System.nanoTime();
         System.out.println("Iniciando hilo");
@@ -45,12 +48,19 @@ public class Game extends JPanel implements Runnable{
     }
 
     private void draw() {
-        //TODO: draw
+        repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        ball.draw(g2);
     }
 
     private void update() {
         //TODO: update
-        personaje.x = personaje.x + velocidad;
+        ball.update();
     }
 
     private void processImput() {
