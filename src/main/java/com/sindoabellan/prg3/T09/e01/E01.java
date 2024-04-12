@@ -40,14 +40,13 @@ public class E01 {
         do {
             try {
                 System.out.println("Intoduzca un numero");
-                Double num = Double.parseDouble(scanner.nextLine());
-
+                int num = Integer.parseInt(scanner.nextLine());
+                numeros.add(num);
                 valido = true;
             } catch (NumberFormatException nfe) {
                 System.out.println("Porfavor pon un numero");
-             }
-        }
-        while(!valido);
+            }
+        } while (!valido);
 
 
     }
